@@ -20,13 +20,19 @@ const Footer = () => {
    * UI
    ***********************************************************************************************************/
   return (
-    <Box bgColor='white' pt='100px' pb='20px'>
-      <Text fontSize={[fonts.FOOTER_SIZE_S, fonts.FOOTER_SIZE_S, fonts.FOOTER_SIZE_L, fonts.FOOTER_SIZE_L]}>
-        © Copyright 2023. Danforth Auto Parts Inc. All Rights Reserved
-      </Text>
 
+    <Center bgColor='white' pt='50px' pb='20px'>
+      <VStack width='100%'>
 
-    </Box>
+        <Box height='1px' bgColor={colors.BG_LOC} width='100%' mb='20px'></Box>
+
+        <Text fontSize={[fonts.FOOTER_SIZE_S, fonts.FOOTER_SIZE_S, fonts.FOOTER_SIZE_L, fonts.FOOTER_SIZE_L]}>
+          © Copyright 2023. Danforth Auto Parts Inc. All Rights Reserved
+        </Text>
+
+      </VStack>
+    </Center>
+
 
 
   );

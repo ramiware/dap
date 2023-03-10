@@ -38,6 +38,9 @@ export function useTheme() {
     H3_SIZE_L: '16px',
     H3_SIZE_S: '13px',
 
+    REV_SIZE_L: '14px',
+    REV_SIZE_S: '11px',
+
     FOOTER_SIZE_L: '10px',
     FOOTER_SIZE_S: '9px'
   }

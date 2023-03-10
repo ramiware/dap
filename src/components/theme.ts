@@ -7,7 +7,7 @@ const theme = extendTheme({
   fonts: {
     heading: `Good News Sans, Impact`,
     body: `Good News Sans, Impact`,
-    p: `'Clipe Shadow', Impact`
+    review: `Google Sans Text Regular, Impact`
   },
   initialColorMode: "dark",
   useSystemColorMode: false,

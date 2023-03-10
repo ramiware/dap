@@ -1,11 +1,13 @@
-import { Box, Text, Image, Center, VStack, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Link, Spacer, HStack, Button, IconButton, MenuIcon, useDisclosure, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, StackDivider, Container, color, AspectRatio, Grid, GridItem, Card, CardBody, CardFooter, CardHeader, Heading } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { Box, Text, Image, Center, VStack, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Link, Spacer, HStack, IconButton, useDisclosure, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerOverlay, StackDivider, Grid, GridItem } from "@chakra-ui/react";
+import { HamburgerIcon, StarIcon } from "@chakra-ui/icons";
 import { ImPhone, ImLocation } from "react-icons/im";
+import { motion } from "framer-motion"
 
 // hooks
 import { useTheme } from "../hooks/useTheme";
 import { useProducts } from "../hooks/useProducts";
 import { useHours } from "../hooks/useHours";
+import { useReviews } from "../hooks/useReviews";
 
 // assets
 import logoV1 from "../assets/logo/dap-logo-v1-415x415.png"
@@ -26,6 +28,8 @@ import canadaFlag from "../assets/images/canada-flag.png"
 import bannerL from "../assets/images/banner-1920x1080.png"
 import bannerS from "../assets/images/banner-960x540.png"
 
+import googleReview from "../assets/reviews/google-review-icon.png"
+
 import Footer from "./Footer";
 
 
@@ -41,10 +45,14 @@ const Home = () => {
   const ADDRESS_LINE2 = 'SCARBOROUGH, ON';
   const ADDRESS_LINE3 = 'M1L 1C4';
 
+  const OFFSET_HDR_S = '90px'
+  const OFFSET_HDR_L = '110px'
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colors, fonts, products } = useTheme();
   const { dapProducts } = useProducts();
   const { hoursOfOperation } = useHours();
+  const { dapReviews } = useReviews();
 
 
   /////////////////////////////////////////////////
@@ -79,42 +87,31 @@ const Home = () => {
         <HStack width={'100%'} spacing='0px'>
 
           {/* LOGO IMG/TXT */}
-          <HStack>
-            <Link href={DAP_URL}><Image src={logoV1} boxSize={["70px", "70px", "90px", "90px"]}></Image></Link>
-            <Link href={DAP_URL}><Image src={logoV3w} width={["100px", "100px", "164px", "164px"]}></Image></Link>
-          </HStack>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <HStack>
+              <Link href={DAP_URL}><Image src={logoV1} boxSize={["70px", "70px", "90px", "90px"]}></Image></Link>
+              <Link href={DAP_URL}><Image src={logoV3w} width={["100px", "100px", "164px", "164px"]}></Image></Link>
+            </HStack>
+          </motion.div>
 
           <Spacer></Spacer>
 
           {/* INFO (MOB ONLY) */}
-          <HStack display={{ base: "block", md: "none" }}
-            fontSize={[fonts.NFO_SIZE_S, fonts.NFO_SIZE_S, fonts.NFO_SIZE_L, fonts.NFO_SIZE_L]}
-            spacing='20px'>
-
-            <Spacer></Spacer>
-
-            {/* PHONE */}
-            <HStack spacing='2px'>
-              <ImPhone />
-              <Link href={"Tel:" + PHONE}>{PHONE}</Link>
-            </HStack>
-            {/* ADDRESS */}
-            <HStack spacing='2px'>
-              <ImLocation />
-              <Text>{ADDRESS_SHORT}</Text>
-            </HStack>
-          </HStack>
-
-
-          {/* INFO (DESKTOP ONLY) / NAV (BOTH) */}
-          <VStack spacing='0px'>
-
-            {/* INFO (DESKTOP ONLY) */}
-            <HStack display={{ base: "none", md: "flex" }}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <HStack display={{ base: "block", md: "none" }}
               fontSize={[fonts.NFO_SIZE_S, fonts.NFO_SIZE_S, fonts.NFO_SIZE_L, fonts.NFO_SIZE_L]}
-              spacing='20px'
-              width='100%'>
+              spacing='20px'>
+
               <Spacer></Spacer>
+
               {/* PHONE */}
               <HStack spacing='2px'>
                 <ImPhone />
@@ -123,48 +120,76 @@ const Home = () => {
               {/* ADDRESS */}
               <HStack spacing='2px'>
                 <ImLocation />
-                <Text>{ADDRESS_LONG}</Text>
+                <Text>{ADDRESS_SHORT}</Text>
               </HStack>
             </HStack>
+          </motion.div>
 
-            {/* DESKTOP NAV */}
-            <HStack display={{ base: "none", md: "block" }} >
-              <Spacer></Spacer>
+          {/* INFO (DESKTOP ONLY) / NAV (BOTH) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <VStack spacing='0px'>
 
-              <Breadcrumb separator='-' width='100%'
-                fontSize={[fonts.NAV_SIZE_S, fonts.NAV_SIZE_S, fonts.NAV_SIZE_L, fonts.NAV_SIZE_L]}>
+              {/* INFO (DESKTOP ONLY) */}
+              <HStack display={{ base: "none", md: "flex" }}
+                fontSize={[fonts.NFO_SIZE_S, fonts.NFO_SIZE_S, fonts.NFO_SIZE_L, fonts.NFO_SIZE_L]}
+                spacing='20px'
+                width='100%'>
+                <Spacer></Spacer>
+                {/* PHONE */}
+                <HStack spacing='2px'>
+                  <ImPhone />
+                  <Link href={"Tel:" + PHONE}>{PHONE}</Link>
+                </HStack>
+                {/* ADDRESS */}
+                <HStack spacing='2px'>
+                  <ImLocation />
+                  <Text>{ADDRESS_LONG}</Text>
+                </HStack>
+              </HStack>
 
-                <BreadcrumbItem>
-                  <BreadcrumbLink href='#home'>HOME</BreadcrumbLink>
-                </BreadcrumbItem>
+              {/* DESKTOP NAV */}
+              <HStack display={{ base: "none", md: "block" }} >
+                <Spacer></Spacer>
 
-                <BreadcrumbItem>
-                  <BreadcrumbLink href='#products'>PRODUCTS</BreadcrumbLink>
-                </BreadcrumbItem>
+                <Breadcrumb separator='-' width='100%'
+                  fontSize={[fonts.NAV_SIZE_S, fonts.NAV_SIZE_S, fonts.NAV_SIZE_L, fonts.NAV_SIZE_L]}>
 
-                <BreadcrumbItem>
-                  <BreadcrumbLink href='#location'>LOCATION</BreadcrumbLink>
-                </BreadcrumbItem>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href='#'>HOME</BreadcrumbLink>
+                  </BreadcrumbItem>
 
-                <BreadcrumbItem>
-                  <BreadcrumbLink href='#hours'>HOURS</BreadcrumbLink>
-                </BreadcrumbItem>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href='#products'>PRODUCTS</BreadcrumbLink>
+                  </BreadcrumbItem>
 
-              </Breadcrumb>
-            </HStack>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href='#location'>LOCATION</BreadcrumbLink>
+                  </BreadcrumbItem>
 
-            {/* MOBILE NAV */}
-            <HStack display={{ base: "block", md: "none" }}>
-              <Spacer></Spacer>
-              <IconButton
-                bgColor={colors.BG_HEADER}
-                color={colors.TXT_HEADER}
-                aria-label='Menu'
-                icon={<HamburgerIcon />}
-                onClick={openMenuDrawer}></IconButton>
-            </HStack>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href='#hours'>HOURS</BreadcrumbLink>
+                  </BreadcrumbItem>
 
-          </VStack>
+                </Breadcrumb>
+              </HStack>
+
+              {/* MOBILE NAV */}
+              <HStack display={{ base: "block", md: "none" }}>
+                <Spacer></Spacer>
+                <IconButton
+                  bgColor={colors.BG_HEADER}
+                  color={colors.TXT_HEADER}
+                  aria-label='Menu'
+                  icon={<HamburgerIcon />}
+                  onClick={openMenuDrawer}></IconButton>
+              </HStack>
+
+            </VStack>
+          </motion.div>
 
         </HStack>
 
@@ -187,7 +212,7 @@ const Home = () => {
               align='stretch'>
               <Box></Box>
               <Box>
-                <Link href='#home'>HOME</Link>
+                <Link href='#'>HOME</Link>
               </Box>
               <Box>
                 <Link href='#products'>PRODUCTS</Link>
@@ -211,7 +236,7 @@ const Home = () => {
 
       {/* OPTIONS START */}
       <Center id='home' width='100%'
-        mt={["90px", "90px", "110px", "110px"]}
+        mt={[OFFSET_HDR_S, OFFSET_HDR_S, OFFSET_HDR_L, OFFSET_HDR_L]}
         bgColor={colors.BG_RIBBON} color={colors.TXT_RIBBON}>
         <HStack
           height='50px'
@@ -245,6 +270,7 @@ const Home = () => {
             </VStack>
           </HStack>
 
+
         </HStack>
       </Center>
       {/* OPTIONS END */}
@@ -270,7 +296,7 @@ const Home = () => {
 
 
         {/* HOME BANNER (DESKTOP ONLY) */}
-        <Center pt='25px' pb='25px'>
+        <Center pt='0px' pb='0px'>
           <Box display={{ base: "none", md: "block" }}
             backgroundImage={bannerL} backgroundPosition={'center'} backgroundSize={"cover"}
             height={['300px', '350px', '400px', '600px']}
@@ -283,21 +309,28 @@ const Home = () => {
 
 
 
-
       {/* BODY */}
       <VStack as="main"
         pl={['10px', '10px', '100px', '110px']}
         pr={['10px', '10px', '100px', '110px']}
-        spacing='45px'>
-
+        // spacing='100px'
+        spacing='0px'
+      >
 
 
         {/* PRODUCTS */}
-        <Box id='products' backgroundColor={colors.BG_BODY} color={colors.TXT_BODY_B} width='100%'>
+        <Box id='products' width='100px' height={[OFFSET_HDR_S, OFFSET_HDR_S, OFFSET_HDR_L, OFFSET_HDR_L]}></Box> {/*OFFSET STICKY HEADER*/}
+        <Box backgroundColor={colors.BG_BODY} color={colors.TXT_BODY_B} width='100%'>
           <Text align='left' pl='20px'
             bgColor={colors.BG_RIBBON} color={colors.TXT_RIBBON}
             fontSize={[fonts.H1_SIZE_S, fonts.H1_SIZE_S, fonts.H1_SIZE_L, fonts.H1_SIZE_L]}>
             TOP CATEGORIES
+          </Text>
+
+          <Text fontSize={[fonts.H2_SIZE_S, fonts.H2_SIZE_S, fonts.H1_SIZE_L, fonts.H1_SIZE_L]}
+            color={colors.TXT_BODY_R}
+            pt='10px'>
+            Call us today to place your order <Link href={"Tel:" + PHONE}>{PHONE}</Link>
           </Text>
 
           <Center>
@@ -309,12 +342,72 @@ const Home = () => {
 
               {dapProducts.map((product, index) => (
 
-                <Link href={product.link} target='_blank' pr='10px' pl='10px'>
-                  <VStack spacing='0px'>
-                    <Image src={product.thumb} boxSize={[products.SM, products.SM, products.MD, products.LG]} objectFit='contain'></Image>
-                    <Text width='100%' p='2px' bgColor={colors.BG_RIBBON}>{product.name}</Text>
-                  </VStack>
-                </Link>
+                // <Link key={index} href={product.link} target='_blank' pr='10px' pl='10px'>
+                // <VStack spacing='0px'>
+                <VStack spacing='0px' key={index} pr='10px' pl='10px'>
+                  <Image src={product.thumb} boxSize={[products.SM, products.SM, products.MD, products.LG]} objectFit='contain'></Image>
+                  <Text width='100%' p='2px' bgColor={colors.BG_RIBBON}>{product.name}</Text>
+                </VStack>
+                // </Link>
+
+              ))}
+
+            </Flex>
+          </Center>
+
+        </Box>
+
+
+
+        {/* REVIEWS */}
+        <Box id='reviews' width='100px' height={[OFFSET_HDR_S, OFFSET_HDR_S, OFFSET_HDR_L, OFFSET_HDR_L]}></Box> {/*OFFSET STICKY HEADER*/}
+        <Box backgroundColor={colors.BG_BODY} color={colors.TXT_BODY_B} width='100%'>
+          <Text align='left' pl='20px'
+            bgColor={colors.BG_RIBBON} color={colors.TXT_RIBBON}
+            fontSize={[fonts.H1_SIZE_S, fonts.H1_SIZE_S, fonts.H1_SIZE_L, fonts.H1_SIZE_L]}>
+            WHAT DO OUR CUSTOMERS SAY?
+          </Text>
+
+          <Center>
+            <Flex fontFamily={'review'} fontSize={[fonts.REV_SIZE_S, fonts.REV_SIZE_S, fonts.REV_SIZE_L, fonts.REV_SIZE_L]}
+              color={colors.TXT_BODY_B}
+              flexWrap='wrap'
+              width={['220px', '220px', '690px', '1150px']}
+            >
+
+              {dapReviews.map((review, index) => (
+
+                <VStack key={index} border='1px' borderColor='gray.200' borderRadius={'lg'}
+                  width={['210px', '210px', '210px', '210px']}
+                  spacing='10px'
+                  m={['10px', '10px', '10px', '10px']}
+                  p='10px'>
+                  {/* Profile Image */}
+                  <Image src={review.thumb} boxSize='48px'></Image>
+                  {/* Name */}
+                  <HStack>
+                    <Image src={googleReview} boxSize='24px'></Image>
+                    <Text width='100%' fontWeight={'bold'} fontSize={[fonts.H3_SIZE_S, fonts.H3_SIZE_S, fonts.H3_SIZE_L, fonts.H3_SIZE_L]}>{review.name}</Text>
+                  </HStack>
+                  {/* Rating */}
+                  <Box display='flex' mt='2' alignItems='center'>
+                    {Array(5)
+                      .fill('')
+                      .map((_, i) => (
+                        <StarIcon
+                          key={i}
+                          color={i < review.rating ? 'teal.500' : 'gray.300'}
+                        />
+                      ))}
+                    {/* Review Count */}
+                    <Box as='span' ml='2' color='gray.600' fontSize='sm'>
+                      {review.reviewCount} reviews
+                    </Box>
+                  </Box>
+                  {/* Comment */}
+                  <Text align='left'>{review.comment.substring(0, 200)}... <Link href={review.link} target='_blank' fontWeight={'bold'}>More</Link></Text>
+
+                </VStack>
 
               ))}
 
@@ -326,7 +419,8 @@ const Home = () => {
 
 
         {/* LOCATION */}
-        <Box id='location' backgroundColor={colors.BG_LOC} color={colors.TXT_LOC} width='100%'>
+        <Box id='location' width='100px' height={[OFFSET_HDR_S, OFFSET_HDR_S, OFFSET_HDR_L, OFFSET_HDR_L]}></Box> {/*OFFSET STICKY HEADER*/}
+        <Box backgroundColor={colors.BG_LOC} color={colors.TXT_LOC} width='100%'>
           <Text align='left' pl='20px'
             bgColor={colors.BG_RIBBON} color={colors.TXT_RIBBON}
             fontSize={[fonts.H1_SIZE_S, fonts.H1_SIZE_S, fonts.H1_SIZE_L, fonts.H1_SIZE_L]}>
@@ -340,9 +434,9 @@ const Home = () => {
             gap={0}
           >
             <GridItem rowSpan={1} colSpan={2}>
-              <VStack fontSize={[fonts.H3_SIZE_S, fonts.H3_SIZE_S, fonts.H3_SIZE_L, fonts.H3_SIZE_L]}
+              <VStack fontFamily='review' fontSize={[fonts.H3_SIZE_S, fonts.H3_SIZE_S, fonts.H3_SIZE_L, fonts.H3_SIZE_L]}
                 spacing='0px' height='100%' pt={['30px', '30px', '60px', '60px']}>
-                <Text>Danforth Auto Parts</Text>
+                <Text fontWeight='bold' pb='10px'>Danforth Auto Parts</Text>
                 <Text>{ADDRESS_SHORT}</Text>
                 <Text>{ADDRESS_LINE2}</Text>
                 <Text>{ADDRESS_LINE3}</Text>
@@ -361,8 +455,10 @@ const Home = () => {
 
 
 
+
         {/* HOURS */}
-        <Box id='hours' backgroundColor={colors.BG_BODY} color={colors.TXT_BODY_B} width='100%'>
+        <Box id='hours' width='100px' height={[OFFSET_HDR_S, OFFSET_HDR_S, OFFSET_HDR_L, OFFSET_HDR_L]}></Box> {/*OFFSET STICKY HEADER*/}
+        <Box backgroundColor={colors.BG_BODY} color={colors.TXT_BODY_B} width='100%'>
           <Text align='left' pl='20px'
             bgColor={colors.BG_RIBBON} color={colors.TXT_RIBBON}
             fontSize={[fonts.H1_SIZE_S, fonts.H1_SIZE_S, fonts.H1_SIZE_L, fonts.H1_SIZE_L]}>
@@ -377,13 +473,15 @@ const Home = () => {
 
           <VStack fontSize={[fonts.H3_SIZE_S, fonts.H3_SIZE_S, fonts.H3_SIZE_L, fonts.H3_SIZE_L]}
             spacing='0px'>
-            {hoursOfOperation.map((day, i) => (
+            {hoursOfOperation.map((day, index) => (
               <>
-                <HStack spacing='0px'>
-                  <Text align='left' width={['60px', '60px', '80px', '80px']}>{day.day}</Text>
+                <Box key={index}>
+                  <HStack spacing='0px'>
+                    <Text align='left' width={['60px', '60px', '80px', '80px']}>{day.day}</Text>
 
-                  <Text align='right' width={['100px', '100px', '120px', '120px']}>{day.open}{day.close}</Text>
-                </HStack>
+                    <Text align='right' width={['100px', '100px', '120px', '120px']}>{day.open}{day.close}</Text>
+                  </HStack>
+                </Box>
               </>
             ))}
           </VStack>
@@ -392,16 +490,14 @@ const Home = () => {
 
         </Box>
 
-        {/* LOGO */}
-
-        <Image src={logoV2} width={['200px', '200px', '300px', '300px']}></Image>
       </VStack>
-
-
-
+      {/* LOGO */}
+      <Center pt='50px'>
+        <Image src={logoV2} width={['200px', '200px', '300px', '300px']}></Image>
+      </Center>
 
       <Footer></Footer>
-    </Box>
+    </Box >
 
 
   );
