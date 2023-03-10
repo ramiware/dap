@@ -311,8 +311,8 @@ const Home = () => {
 
       {/* BODY */}
       <VStack as="main"
-        pl={['10px', '10px', '100px', '110px']}
-        pr={['10px', '10px', '100px', '110px']}
+        pl={['10px', '10px', '100px', '200px']}
+        pr={['10px', '10px', '100px', '200px']}
         // spacing='100px'
         spacing='0px'
       >
