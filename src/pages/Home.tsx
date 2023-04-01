@@ -38,7 +38,7 @@ import Footer from "./Footer";
  ***********************************************************************************************************/
 const Home = () => {
 
-  const DAP_URL = 'https://danforthap.netlify.app';
+  const DAP_URL = 'https://danforthautoparts.com';
   const PHONE = '416-690-2533';
   const ADDRESS_LONG = '3306 DANFORTH AVE, SCARBOROUGH, ON';
   const ADDRESS_SHORT = '3306 DANFORTH AVE';

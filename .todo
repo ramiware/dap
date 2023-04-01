@@ -1,12 +1,12 @@
 ------------------------------------------------------
-| V1.02
+| V1.03
 ------------------------------------------------------
 
 ------------------------------------------------------
 | OUTSTANDING
 ------------------------------------------------------
-- create and add google tag manager to index.tsx
-- add description to index.html
+DONE[V1.03] - create and add google tag manager to index.tsx
+DONE[V1.03] - add description to index.html
 - add meta tags to index.html
 - add google ads
 
