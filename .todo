@@ -1,13 +1,11 @@
 ------------------------------------------------------
-| V1.04
+| V1.05
 ------------------------------------------------------
 
 ------------------------------------------------------
 | OUTSTANDING
 ------------------------------------------------------
-DONE[V1.03] - create and add google tag manager to index.tsx
-DONE[V1.03] - SEO add description to index.html
-DONE[V1.04] - SEO add meta tags to index.html & updated title
+
 - add google ads
 
 
@@ -15,3 +13,7 @@ DONE[V1.04] - SEO add meta tags to index.html & updated title
 ------------------------------------------------------
 | COMPLETED
 ------------------------------------------------------
+DONE[V1.03] - create and add google tag manager to index.tsx
+DONE[V1.03] - SEO add description to index.html
+DONE[V1.04] - SEO add meta tags to index.html & updated title
+DONE[V1.05] - added year date var, and ramiware link

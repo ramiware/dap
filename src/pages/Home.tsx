@@ -12,18 +12,10 @@ import { useReviews } from "../hooks/useReviews";
 // assets
 import logoV1 from "../assets/logo/dap-logo-v1-415x415.png"
 import logoV2 from "../assets/logo/dap-logo-v2-500x200.png"
-import logoV3 from "../assets/logo/dap-logo-v3-500x160.png"
-import logoV2w from "../assets/logo/dap-logo-v2-500x200-w.png"
 import logoV3w from "../assets/logo/dap-logo-v3-500x160-w.png"
-import box64 from "../assets/icons/box-64.png"
 import box64w from "../assets/icons/box-64-w.png"
-import truck64 from "../assets/icons/truck-64.png"
 import truck64w from "../assets/icons/truck-64-w.png"
-import shipping64 from "../assets/icons/shipping-64.png"
-import shipping64w from "../assets/icons/shipping-64-w.png"
-import sale64 from "../assets/icons/sale-64.png"
 import sale64w from "../assets/icons/sale-64-w.png"
-import canadaFlag from "../assets/images/canada-flag.png"
 
 import bannerL from "../assets/images/banner-1920x1080.png"
 import bannerS from "../assets/images/banner-960x540.png"
@@ -445,7 +437,7 @@ const Home = () => {
               </VStack>
             </GridItem>
             <GridItem rowSpan={1} colSpan={3}>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2884.8237434175435!2d-79.28200114854486!3d43.69342757901745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4ce9a6fa267c7%3A0xd3de6c6b0d6433b9!2s3306%20Danforth%20Ave%2C%20Scarborough%2C%20ON%20M1L%201C4!5e0!3m2!1sen!2sca!4v1678388254354!5m2!1sen!2sca" loading="lazy" width='100%' height='100%'></iframe>
+              <iframe title="Danforth Auto Parts Address" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2884.8237434175435!2d-79.28200114854486!3d43.69342757901745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4ce9a6fa267c7%3A0xd3de6c6b0d6433b9!2s3306%20Danforth%20Ave%2C%20Scarborough%2C%20ON%20M1L%201C4!5e0!3m2!1sen!2sca!4v1678388254354!5m2!1sen!2sca" loading="lazy" width='100%' height='100%'></iframe>
             </GridItem>
           </Grid>
 
